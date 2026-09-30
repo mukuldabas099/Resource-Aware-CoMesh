@@ -1,0 +1,6 @@
+Device #,9
+Node %,0.1
+K,5
+Leader Election time,Quorum time,State Transfer time,All k-group time
+Total messages sent in the network,18
+Average bandwidth of messages sent in the network,Infinity

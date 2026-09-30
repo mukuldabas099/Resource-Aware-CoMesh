@@ -1,0 +1,69 @@
+device(s) [2] k-group: (members [2, 0, 7, 1, 4]) elected node 2 as leader for epoch 1 at time 2
+device(s) [6] k-group: (members [4, 3, 2, 5, 8]) elected node 4 as leader for epoch 1 at time 2
+device(s) [7] k-group: (members [4, 5, 6, 1, 2]) elected node 4 as leader for epoch 1 at time 2
+device(s) [3] k-group: (members [4, 3, 0, 2, 5]) elected node 4 as leader for epoch 1 at time 2
+device(s) [8] k-group: (members [5, 1, 3, 0, 2]) elected node 5 as leader for epoch 1 at time 2
+device(s) [5] k-group: (members [6, 8, 3, 1, 0]) elected node 6 as leader for epoch 1 at time 2
+device(s) [4] k-group: (members [7, 0, 4, 8, 5]) elected node 7 as leader for epoch 1 at time 2
+device(s) [1] k-group: (members [7, 0, 8, 4, 5]) elected node 7 as leader for epoch 1 at time 2
+device(s) [0] k-group: (members [7, 1, 2, 8, 3]) elected node 7 as leader for epoch 1 at time 2
+routine(s) [R] k-group: (members [8, 0, 2, 1, 6]) elected node 8 as leader for epoch 1 at time 2
+device "0" leader = 7, routine "R" leader = 8
+PASS - device and routine leaders got elected
+[debug] baseline sent=1
+PASS - baseline: reading=40 (<=50) -> condition NOT satisfied
+PASS - baseline: one raw-reading message sent
+[0], last locked: null
+Next device for routine R-1 to lock: 0
+Routine R k-group: routine R-1 triggered at time 37
+Device 0 k-group: lock request by routine R-1 received at time 38
+Device 0 state after: Not locked, Current queue: {}, New requests: {0=R-1}
+PASS - baseline: reading=60 (>50) -> condition satisfied
+PASS - baseline: two raw-reading messages sent total
+PASS - baseline: no push-down messages sent
+Device 0 k-group: lock request granted to routine R-1 at time 40
+Device 0 state: Not locked, Current queue: {0=R-1}, New requests: {}
+Routine R-1 k-group: device 0 lock request granted at time 41
+Device 0 k-group: lock granted to routine R-1 at time 42
+Device 0 state: Locked, Current queue: {0=R-1}, New requests: {}
+[0], last locked: null
+Next device for routine R-2 to lock: 0
+Routine R k-group: routine R-2 triggered at time 42
+Device 0 k-group: lock request by routine R-2 received at time 43
+Device 0 state after: Locked, Current queue: {0=R-1}, New requests: {1=R-2}
+Routine R-1 k-group: device 0 lock acquired at time 43
+Routine R-1 recording prelock time as -1
+Dev lock release time after recording:   
+   0:-1
+Routine R-1 is starting execution at time 43 !!!!
+routine_releasing_locks: {R=[0]}
+Routine R-1 finished execution, releasing devices [0] at time 44
+PASS - pushdown: reading=70 -> condition satisfied
+PASS - pushdown: first push sent (bit changed vs. no prior pushdown state)
+PASS - pushdown: nothing suppressed yet
+Device 0 k-group: lock request granted to routine R-2 at time 45
+Device 0 state: Locked, Current queue: {0=R-1, 1=R-2}, New requests: {}
+Device 0 k-group: lock release requested by routine R-1 at time 45
+Routine R-2 k-group: device 0 lock request granted at time 46
+Device 0 k-group: lock released for routine R-1 at time 47
+Device 0 k-group: gathering quorum for granting lock to routine R-2 at time 47
+Routine R-1 k-group: device 0 lock released at time 48
+Node 7 received LOCK_RELEASED_ACK for routine R device 0
+Device 0 k-group: lock granted to routine R-2 at time 49
+Device 0 state: Locked, Current queue: {1=R-2}, New requests: {}
+PASS - pushdown: reading=80 (bit unchanged) -> condition still satisfied
+PASS - pushdown: still only 1 message sent (second push suppressed)
+PASS - pushdown: exactly 1 suppression recorded
+Routine R-2 k-group: device 0 lock acquired at time 50
+Routine R-2 recording prelock time as 44
+Dev lock release time after recording:   
+   0:44
+Routine R-2 is starting execution at time 50 !!!!
+routine_releasing_locks: {R=[0]}
+Routine R-2 finished execution, releasing devices [0] at time 51
+Device 0 k-group: lock release requested by routine R-2 at time 52
+Device 0 k-group: lock released for routine R-2 at time 54
+PASS - pushdown: reading=20 -> condition NOT satisfied
+PASS - pushdown: second message sent after bit flip
+
+All Gap 3 live-integration checks passed.

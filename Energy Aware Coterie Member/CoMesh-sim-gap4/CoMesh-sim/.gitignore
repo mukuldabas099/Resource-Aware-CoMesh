@@ -1,0 +1,13 @@
+*.DS_Store
+.vscode/
+.settings/
+.venv/
+*.code-workspace
+*.class
+*.log
+build/
+logs/
+outputs/
+target/
+workloads/*/*.txt
+**/__pycache__

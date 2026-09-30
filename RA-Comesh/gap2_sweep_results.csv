@@ -1,0 +1,8 @@
+batteryThreshold,reElections_reduction_pct,overhead_reduction_pct,healthyShare_increase_pct,gini_change_pct
+10,10.47,0.65,2.06,-19.86
+20,-2.57,-0.18,3.65,-23.00
+30,13.04,1.20,4.84,-24.57
+40,-0.40,0.73,11.09,-23.92
+50,14.43,3.00,75.08,-19.22
+60,2.96,3.00,75.08,-13.42
+70,-23.72,0.19,72.89,2.49

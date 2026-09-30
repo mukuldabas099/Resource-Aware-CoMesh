@@ -1,0 +1,12 @@
+Device #,25
+Node %,0.1
+K,5
+Leader Election time,Quorum time,State Transfer time,All k-group time
+4,4,14,8
+6,6,8,6
+6,6
+6,6,12,8
+8,8,20,10
+10,10,20,12
+Total messages sent in the network,708
+Average bandwidth of messages sent in the network,1678.022
